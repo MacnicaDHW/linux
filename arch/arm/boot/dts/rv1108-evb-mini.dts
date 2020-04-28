@@ -26,6 +26,9 @@
 &sdmmc {
 	pinctrl-names = "default";
 	pinctrl-0 = <&sdmmc_clk &sdmmc_cmd &sdmmc_cd &sdmmc_bus4>;
+	bus-width = <4>;
+	cap-sd-highspeed;
+	disable-wp;
 	status = "okay";
 };
 
