@@ -18,6 +18,11 @@
 	};
 };
 
+&cpu0 {
+	/delete-property/dynamic-power-coefficient;
+	/delete-property/operating-points-v2;
+};
+
 &sdmmc {
 	pinctrl-names = "default";
 	pinctrl-0 = <&sdmmc_clk &sdmmc_cmd &sdmmc_cd &sdmmc_bus4>;
