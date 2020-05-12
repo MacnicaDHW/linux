@@ -24,6 +24,17 @@
 		regulator-max-microvolt = <5000000>;
 		regulator-boot-on;
 	};
+
+	vcc_host: vcc-host-regulator {
+		compatible = "regulator-fixed";
+		gpio = <&gpio0 RK_PB0 GPIO_ACTIVE_HIGH>;
+		enable-active-high;
+		pinctrl-names = "default";
+		pinctrl-0 = <&host_vbus_drv>;
+		regulator-name = "vcc_host";
+		regulator-always-on;
+	};
+
 };
 
 &cpu0 {
@@ -155,6 +166,10 @@
 &u2phy {
 	status = "okay";
 
+	u2phy_host: host-port {
+		status = "okay";
+	};
+
 	u2phy_otg: otg-port {
 		status = "okay";
 	};
@@ -174,4 +189,12 @@
 
 &usb_otg {
 	status = "okay";
+};
+
+&pinctrl {
+	usb {
+		host_vbus_drv: host-vbus-drv {
+			rockchip,pins = <0 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
+		};
+	};
 };
